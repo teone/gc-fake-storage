@@ -14,12 +14,12 @@ from google.cloud import storage
 from google.auth.credentials import AnonymousCredentials
 import requests
 import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-storage._http.Connection.API_BASE_URL = "https://127.0.0.1:4443"
+storage._http.Connection.API_BASE_URL = "https://127.0.0.1:4443" # override the BASE_URL in the client library with the mock server
 
 my_http = requests.Session()
 my_http.verify = False  # disable SSL validation
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) # disable https warnings for https insecure certs
 
 client = storage.Client(credentials=AnonymousCredentials(), project="test", _http=my_http)
 for bucket in client.list_buckets():
