@@ -1,5 +1,6 @@
 # Configure shell
 SHELL = bash -e -o pipefail
+PWD = $(shell pwd)
 
 # Variables
 VERSION                  ?= $(shell cat ./VERSION)
@@ -20,7 +21,7 @@ push:
 	docker push ${DOCKER_IMAGENAME}
 
 run:
-	docker run -d --name ${SERVICE_NAME} -p 4443:4443 ${DOCKER_IMAGENAME}
+	docker run -d --name ${SERVICE_NAME} -p 4443:4443 -v ${PWD}/data:/data ${DOCKER_IMAGENAME}
 
 stop:
 	docker rm -f ${SERVICE_NAME}

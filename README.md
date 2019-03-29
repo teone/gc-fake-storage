@@ -7,7 +7,29 @@ This is a simple Dockerization of [fake-gcs-server](https://github.com/fsouza/fa
 ```shell
 docker run -d --name gc-fake-storage -p 4443:4443 matteoscandolo/gc-fake-storage:0.1.0
 ```
-Example with the `python` client library:
+
+## Preload data
+
+In case you want to preload some data in `gs-fake-storage` just mount a folder in the container at `/data`:
+
+```shell
+docker run -d --name gc-fake-storage -p 4443:4443 -v /tmp/data:/data matteoscandolo/gc-fake-storage:0.1.0
+```
+
+Where the content of `/tmp/data` is:
+
+```
+- sample_bucket
+  - some_file.txt
+- another_bucket
+  - some_other_file.txt
+```
+
+This will result in two `buckets` containing one `blob` each.
+
+## Example with the `python` client library:
+
+For a more complex example look into the `examples` directory
 
 ```python
 from google.cloud import storage
@@ -25,8 +47,3 @@ client = storage.Client(credentials=AnonymousCredentials(), project="test", _htt
 for bucket in client.list_buckets():
     print(bucket.name)
 ````
-
-## TODOs: 
-
-- add ability to load test data trough a shared volume
-
