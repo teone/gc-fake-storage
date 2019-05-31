@@ -1,19 +1,7 @@
 {
 	"comment": "",
-	"ignore": "test",
+	"ignore": "test appengine",
 	"package": [
-		{
-			"path": "appengine",
-			"revision": ""
-		},
-		{
-			"path": "appengine_internal",
-			"revision": ""
-		},
-		{
-			"path": "appengine_internal/base",
-			"revision": ""
-		},
 		{
 			"checksumSHA1": "b1KgRkWqz0RmrEBK6IJ8kOJva6w=",
 			"path": "cloud.google.com/go/compute/metadata",
