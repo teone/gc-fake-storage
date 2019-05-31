@@ -9,6 +9,7 @@ FROM alpine:3.5
 MAINTAINER Matteo Scandolo <teo.punto@gmail.com>
 
 COPY --from=builder /build/go-fake-storage /service/go-fake-storage
+RUN mkdir /storage
 
 EXPOSE 4443
 
