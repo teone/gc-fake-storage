@@ -45,10 +45,10 @@
 			"revisionTime": "2019-03-26T12:33:24Z"
 		},
 		{
-			"checksumSHA1": "F2epjsNy7YxZBTtbpvMEMO4ZGjU=",
+			"checksumSHA1": "bKbj221nscYkDK8bjUcFvrPYyRU=",
 			"path": "github.com/fsouza/fake-gcs-server/fakestorage",
-			"revision": "65e9489b35203d3ac602982cd4a6712d9ca13980",
-			"revisionTime": "2019-03-26T16:48:08Z"
+			"revision": "6a18602b15014501f0f83096ec46b38e2b059047",
+			"revisionTime": "2019-05-31T12:59:19Z"
 		},
 		{
 			"checksumSHA1": "Te//OY7T9yXNI8erkUWIp/gqnjY=",

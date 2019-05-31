@@ -130,17 +130,14 @@ func (s *Server) buildMuxer() {
 	s.mux.Host("{bucketName}.storage.googleapis.com").Path("/{objectName:.+}").Methods("GET", "HEAD").HandlerFunc(s.downloadObject)
 	r := s.mux.PathPrefix("/storage/v1").Subrouter()
 	r.Path("/b").Methods("GET").HandlerFunc(s.listBuckets)
+	r.Path("/b").Methods("POST").HandlerFunc(s.createBucketByPost)
 	r.Path("/b/{bucketName}").Methods("GET").HandlerFunc(s.getBucket)
 	r.Path("/b/{bucketName}/o").Methods("GET").HandlerFunc(s.listObjects)
 	r.Path("/b/{bucketName}/o").Methods("POST").HandlerFunc(s.insertObject)
 	r.Path("/b/{bucketName}/o/{objectName:.+}").Methods("GET").HandlerFunc(s.getObject)
 	r.Path("/b/{bucketName}/o/{objectName:.+}").Methods("DELETE").HandlerFunc(s.deleteObject)
 	r.Path("/b/{sourceBucket}/o/{sourceObject:.+}/rewriteTo/b/{destinationBucket}/o/{destinationObject:.+}").HandlerFunc(s.rewriteObject)
-
-	// Download path
 	s.mux.Path("/download/storage/v1/b/{bucketName}/o/{objectName}").Methods("GET").HandlerFunc(s.downloadObject)
-
-	// Upload
 	s.mux.Path("/upload/storage/v1/b/{bucketName}/o").Methods("POST").HandlerFunc(s.insertObject)
 	s.mux.Path("/upload/resumable/{uploadId}").Methods("PUT", "POST").HandlerFunc(s.uploadFileContent)
 }
